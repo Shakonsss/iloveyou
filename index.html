@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pentru tine</title>
+  <title>Pentru iubita mea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-top: #ffeef7;
-      --bg-mid: #ffd7e8;
-      --bg-bot: #ffc7dd;
-      --envelope-back: #f8a6c5;
-      --envelope-front: #f591b8;
-      --envelope-flap: #ffbad4;
-      --paper: #fffafc;
+      --bg1: #fff2f8;
+      --bg2: #ffd6e8;
+      --bg3: #ffc2dc;
+      --pink-1: #ff8fbd;
+      --pink-2: #ff74ad;
+      --pink-3: #ffb7d5;
+      --letter: #fffafb;
       --ink: #9f2f63;
-      --ink-soft: #be4e83;
-      --heart: #ff3f7f;
-      --shadow: rgba(116, 31, 73, 0.26);
+      --ink-soft: #b7497c;
+      --heart: #ff2d74;
+      --shadow: rgba(124, 30, 78, 0.28);
     }
 
     * {
@@ -30,89 +30,87 @@
       margin: 0;
       min-height: 100vh;
       overflow: hidden;
-      font-family: "Nunito", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.72), transparent 35%),
-        radial-gradient(circle at 80% 8%, rgba(255, 255, 255, 0.6), transparent 32%),
-        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 48%, var(--bg-bot) 100%);
       display: grid;
       place-items: center;
+      font-family: "Nunito", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.78), transparent 33%),
+        radial-gradient(circle at 82% 10%, rgba(255, 255, 255, 0.62), transparent 30%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 52%, var(--bg3) 100%);
     }
 
     .heart-rain {
       position: fixed;
       inset: 0;
+      overflow: hidden;
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
     }
 
     .heart-rain span {
       position: absolute;
-      top: -12vh;
+      top: -16vh;
       left: 0;
       color: var(--heart);
-      opacity: 0.45;
-      font-size: calc(12px + var(--size));
-      animation: fall var(--dur) linear infinite;
+      opacity: 0.42;
+      font-size: calc(16px + var(--size));
+      text-shadow: 0 10px 20px rgba(255, 45, 116, 0.24);
+      transform: translate3d(0, 0, 0);
+      animation: rain var(--dur) linear infinite;
       animation-delay: var(--delay);
-      text-shadow: 0 8px 16px rgba(255, 63, 127, 0.25);
       user-select: none;
     }
 
-    @keyframes fall {
+    @keyframes rain {
       0% {
-        transform: translate3d(var(--x), -12vh, 0) rotate(0deg);
+        transform: translate3d(var(--x), -15vh, 0) rotate(0deg);
       }
-
       100% {
-        transform: translate3d(calc(var(--x) + var(--drift)), 114vh, 0) rotate(320deg);
+        transform: translate3d(calc(var(--x) + var(--drift)), 115vh, 0) rotate(360deg);
       }
     }
 
     .scene {
       position: relative;
       z-index: 1;
-      width: min(92vw, 520px);
-      aspect-ratio: 1 / 1;
+      width: min(95vw, 680px);
+      height: min(90vh, 760px);
       display: grid;
       place-items: center;
-      filter: drop-shadow(0 30px 38px var(--shadow));
+      align-content: center;
+      gap: 0.65rem;
     }
 
     .title {
-      position: absolute;
-      top: 7%;
-      left: 50%;
-      transform: translateX(-50%);
       margin: 0;
-      color: var(--ink);
-      font-size: clamp(1.2rem, 3.8vw, 1.9rem);
-      letter-spacing: 0.01em;
       text-align: center;
+      font-size: clamp(1.2rem, 3.4vw, 1.9rem);
+      color: var(--ink);
+      letter-spacing: 0.02em;
     }
 
     .title span {
       display: block;
-      font-family: "Great Vibes", "Times New Roman", serif;
-      font-size: clamp(2.1rem, 7.5vw, 3.5rem);
-      line-height: 1;
-      margin-top: 0.1rem;
-      color: #d6377c;
+      margin-top: 0.12rem;
+      font-family: "Great Vibes", serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      line-height: 0.95;
+      color: #d9357f;
     }
 
-    .envelope-wrap {
-      position: relative;
-      width: min(80vw, 360px);
-      aspect-ratio: 5 / 3.6;
+    .envelope-btn {
       border: 0;
       background: transparent;
       padding: 0;
+      width: min(88vw, 500px);
+      aspect-ratio: 14 / 9;
+      position: relative;
       cursor: pointer;
-      outline-offset: 12px;
+      outline-offset: 10px;
+      filter: drop-shadow(0 30px 36px var(--shadow));
     }
 
-    .envelope-wrap:focus-visible {
+    .envelope-btn:focus-visible {
       outline: 3px solid rgba(255, 255, 255, 0.95);
     }
 
@@ -121,44 +119,98 @@
       inset: 0;
     }
 
-    .envelope-back {
+    .back {
       position: absolute;
       inset: 0;
-      background: var(--envelope-back);
-      border-radius: 0.9rem;
+      background: var(--pink-1);
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
     }
 
-    .envelope-front {
+    .front {
       position: absolute;
-      inset: 0;
-      clip-path: polygon(0 38%, 50% 78%, 100% 38%, 100% 100%, 0 100%);
-      background: var(--envelope-front);
-      border-radius: 0.9rem;
+      width: 0;
+      height: 0;
       z-index: 5;
     }
 
-    .envelope-flap {
-      position: absolute;
-      inset: 0;
-      clip-path: polygon(0 0, 100% 0, 50% 58%);
-      background: var(--envelope-flap);
-      border-radius: 0.9rem;
+    .flap {
+      border-left: min(44vw, 250px) solid transparent;
+      border-right: min(44vw, 250px) solid transparent;
+      border-top: min(30vw, 180px) solid var(--pink-2);
+      border-bottom: min(26vw, 150px) solid transparent;
       transform-origin: top;
-      transition: transform 0.9s cubic-bezier(.2, .85, .2, 1);
+      transition: transform 0.75s cubic-bezier(.25, .8, .2, 1), z-index 0.4s;
+      top: 0;
+      left: 0;
       z-index: 8;
-      backface-visibility: hidden;
+    }
+
+    .pocket {
+      border-left: min(44vw, 250px) solid var(--pink-3);
+      border-right: min(44vw, 250px) solid var(--pink-3);
+      border-bottom: min(29vw, 170px) solid var(--pink-1);
+      border-top: min(28vw, 160px) solid transparent;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      top: 0;
+      left: 0;
+      z-index: 7;
+    }
+
+    .letter {
+      position: absolute;
+      left: 50%;
+      bottom: 6%;
+      width: 84%;
+      height: 84%;
+      transform: translate(-50%, 38%);
+      border-radius: 12px;
+      background: var(--letter);
+      border: 1px solid rgba(248, 157, 198, 0.7);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.95),
+        0 14px 28px rgba(193, 64, 116, 0.17);
+      z-index: 4;
+      padding: clamp(0.9rem, 3vw, 1.5rem);
+      text-align: center;
+      display: grid;
+      place-content: center;
+      gap: 0.55rem;
+      transition: transform 0.82s cubic-bezier(.2, .9, .2, 1);
+    }
+
+    .letter h2 {
+      margin: 0;
+      font-family: "Great Vibes", serif;
+      font-size: clamp(2.4rem, 8.5vw, 4.1rem);
+      line-height: 0.9;
+      color: var(--ink);
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.45s ease 0.22s, transform 0.45s ease 0.22s;
+    }
+
+    .letter p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: clamp(0.95rem, 2.55vw, 1.18rem);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.45s ease 0.32s, transform 0.45s ease 0.32s;
     }
 
     .seal {
       position: absolute;
-      top: 35%;
       left: 50%;
+      top: 50%;
+      width: clamp(54px, 8vw, 68px);
+      height: clamp(54px, 8vw, 68px);
       transform: translate(-50%, -50%);
-      width: 54px;
-      height: 54px;
-      z-index: 9;
-      transition: transform 0.8s ease, opacity 0.55s ease;
-      filter: drop-shadow(0 6px 12px rgba(160, 28, 90, 0.28));
+      z-index: 10;
+      transition: opacity 0.45s ease, transform 0.6s ease;
+      filter: drop-shadow(0 8px 16px rgba(175, 35, 102, 0.3));
     }
 
     .seal::before,
@@ -181,119 +233,133 @@
     .seal span {
       position: absolute;
       inset: 0;
+      border-radius: 14px;
       background: var(--heart);
       transform: rotate(45deg) scale(0.86);
-      border-radius: 14px;
     }
 
-    .letter {
+    .float-hearts {
       position: absolute;
-      left: 50%;
-      bottom: 6%;
-      width: 87%;
-      height: 84%;
-      transform: translate(-50%, 34%);
-      background: var(--paper);
-      border-radius: 0.72rem;
-      z-index: 4;
-      border: 1px solid rgba(244, 156, 194, 0.65);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.86),
-        0 16px 30px rgba(175, 48, 103, 0.14);
-      padding: clamp(0.9rem, 3vw, 1.3rem);
-      display: grid;
-      place-content: center;
-      gap: 0.6rem;
-      text-align: center;
-      transition: transform 0.95s cubic-bezier(.22, 1, .36, 1);
+      left: 0;
+      right: 0;
+      bottom: 46%;
+      height: 0;
+      pointer-events: none;
+      z-index: 6;
     }
 
-    .letter h2 {
-      margin: 0;
-      font-family: "Great Vibes", "Times New Roman", serif;
-      font-size: clamp(2.2rem, 9vw, 3.35rem);
-      color: var(--ink);
-      font-weight: 400;
-      line-height: 0.95;
+    .float-heart {
+      position: absolute;
+      left: var(--left);
+      bottom: 0;
+      width: var(--w);
+      height: var(--w);
       opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.55s ease 0.26s, transform 0.55s ease 0.26s;
+      transform: translateY(0) scale(0.7);
+      animation: floatUp var(--t) ease-in forwards;
+      animation-delay: var(--d);
     }
 
-    .letter p {
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: clamp(0.92rem, 2.4vw, 1.04rem);
-      letter-spacing: 0.01em;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.55s ease 0.35s, transform 0.55s ease 0.35s;
+    .float-heart::before,
+    .float-heart::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #ff4f90;
+      border-radius: 50%;
+    }
+
+    .float-heart::before {
+      transform: translateX(-25%) scale(0.8);
+    }
+
+    .float-heart::after {
+      transform: translateX(25%) scale(0.8);
+    }
+
+    .float-heart span {
+      position: absolute;
+      inset: 0;
+      background: #ff4f90;
+      border-radius: 10px;
+      transform: rotate(45deg) scale(0.86);
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.7) rotate(0deg);
+      }
+      15% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-360px) translateX(var(--sway)) scale(1.08) rotate(28deg);
+      }
     }
 
     .hint {
-      position: absolute;
-      bottom: 7%;
-      left: 50%;
-      transform: translateX(-50%);
       margin: 0;
-      color: #a43e73;
-      font-size: clamp(0.84rem, 2.2vw, 0.97rem);
+      color: #a03b70;
       background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      padding: 0.36rem 0.82rem;
+      border: 1px solid rgba(255, 255, 255, 0.88);
       border-radius: 999px;
-      backdrop-filter: blur(4px);
-      animation: pulse 1.8s ease-in-out infinite;
-      transition: opacity 0.4s ease;
+      padding: 0.42rem 0.9rem;
+      font-size: clamp(0.86rem, 2.2vw, 1rem);
+      animation: pulse 1.7s ease-in-out infinite;
+      transition: opacity 0.35s ease;
     }
 
     @keyframes pulse {
-      0%, 100% {
-        transform: translateX(-50%) scale(1);
-      }
-
-      50% {
-        transform: translateX(-50%) scale(1.04);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
-    .envelope-wrap.open .envelope-flap {
+    .open .flap {
       transform: rotateX(180deg);
+      z-index: 2;
     }
 
-    .envelope-wrap.open .seal {
-      transform: translate(-50%, -50%) scale(0.8);
-      opacity: 0;
+    .open .letter {
+      transform: translate(-50%, -46%);
+      z-index: 9;
     }
 
-    .envelope-wrap.open .letter {
-      transform: translate(-50%, -48%);
-    }
-
-    .envelope-wrap.open .letter h2,
-    .envelope-wrap.open .letter p {
+    .open .letter h2,
+    .open .letter p {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .envelope-wrap.open ~ .hint {
+    .open .seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    .open ~ .hint {
       opacity: 0;
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 560px) {
       .scene {
-        width: 96vw;
+        height: min(94vh, 760px);
+      }
+
+      .envelope-btn {
+        width: min(94vw, 500px);
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .heart-rain span,
-      .envelope-flap,
+      .flap,
       .letter,
       .seal,
       .letter h2,
       .letter p,
-      .hint {
+      .hint,
+      .float-heart {
         animation: none;
         transition: none;
       }
@@ -303,19 +369,21 @@
 <body>
   <div class="heart-rain" id="heartRain" aria-hidden="true"></div>
 
-  <main class="scene" aria-label="Mesaj de dragoste">
-    <h1 class="title">Pentru iubita mea<span>cu toata inima</span></h1>
+  <main class="scene">
+    <h1 class="title">Un plic doar pentru tine<span>iubirea mea</span></h1>
 
-    <button class="envelope-wrap" id="envelopeButton" aria-expanded="false" aria-label="Deschide plicul">
+    <button id="envelopeButton" class="envelope-btn" aria-expanded="false" aria-label="Deschide plicul">
       <div class="envelope">
-        <div class="envelope-back"></div>
+        <div class="back"></div>
         <div class="letter">
           <h2>Te iubesc!</h2>
-          <p>Tu imi faci zilele mai frumoase, in fiecare clipa.</p>
+          <p>In fiecare zi cu tine e mai frumoasa decat ieri.</p>
+          <p>Esti bucuria mea preferata.</p>
         </div>
-        <div class="envelope-front"></div>
-        <div class="envelope-flap"></div>
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
         <div class="seal" aria-hidden="true"><span></span></div>
+        <div class="float-hearts" id="floatHearts" aria-hidden="true"></div>
       </div>
     </button>
 
@@ -325,27 +393,46 @@
   <script>
     const envelopeButton = document.getElementById("envelopeButton");
     const heartRain = document.getElementById("heartRain");
+    const floatHearts = document.getElementById("floatHearts");
+
+    function spawnRainHearts() {
+      const count = 34;
+      for (let i = 0; i < count; i += 1) {
+        const heart = document.createElement("span");
+        heart.textContent = "♥";
+        heart.style.setProperty("--x", `${Math.random() * 100}vw`);
+        heart.style.setProperty("--drift", `${(Math.random() * 18 - 9).toFixed(2)}vw`);
+        heart.style.setProperty("--dur", `${8 + Math.random() * 9}s`);
+        heart.style.setProperty("--delay", `${-Math.random() * 12}s`);
+        heart.style.setProperty("--size", `${Math.floor(Math.random() * 28) + 24}px`);
+        heartRain.appendChild(heart);
+      }
+    }
+
+    function burstHearts() {
+      floatHearts.innerHTML = "";
+      for (let i = 0; i < 9; i += 1) {
+        const h = document.createElement("div");
+        h.className = "float-heart";
+        h.style.setProperty("--left", `${10 + Math.random() * 80}%`);
+        h.style.setProperty("--w", `${22 + Math.random() * 20}px`);
+        h.style.setProperty("--t", `${2.6 + Math.random() * 1.8}s`);
+        h.style.setProperty("--d", `${Math.random() * 0.35}s`);
+        h.style.setProperty("--sway", `${(Math.random() * 80 - 40).toFixed(1)}px`);
+        h.innerHTML = "<span></span>";
+        floatHearts.appendChild(h);
+      }
+    }
 
     envelopeButton.addEventListener("click", () => {
-      envelopeButton.classList.toggle("open");
-      envelopeButton.setAttribute(
-        "aria-expanded",
-        envelopeButton.classList.contains("open") ? "true" : "false"
-      );
+      const isOpen = envelopeButton.classList.toggle("open");
+      envelopeButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      if (isOpen) {
+        burstHearts();
+      }
     });
 
-    const heartsCount = 34;
-
-    for (let i = 0; i < heartsCount; i += 1) {
-      const heart = document.createElement("span");
-      heart.textContent = "♥";
-      heart.style.setProperty("--x", `${Math.random() * 100}vw`);
-      heart.style.setProperty("--drift", `${(Math.random() * 16 - 8).toFixed(2)}vw`);
-      heart.style.setProperty("--dur", `${7 + Math.random() * 8}s`);
-      heart.style.setProperty("--delay", `${-Math.random() * 12}s`);
-      heart.style.setProperty("--size", `${Math.floor(Math.random() * 56) + 32}px`);
-      heartRain.appendChild(heart);
-    }
+    spawnRainHearts();
   </script>
 </body>
 </html>
