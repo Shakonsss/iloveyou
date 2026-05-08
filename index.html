@@ -29,10 +29,16 @@
     body {
       margin: 0;
       min-height: 100vh;
+      min-height: 100dvh;
       overflow: hidden;
       display: grid;
       place-items: center;
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
       font-family: "Nunito", "Segoe UI", sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
       background:
         radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.78), transparent 33%),
         radial-gradient(circle at 82% 10%, rgba(255, 255, 255, 0.62), transparent 30%),
@@ -106,6 +112,7 @@
       aspect-ratio: 14 / 9;
       position: relative;
       cursor: pointer;
+      touch-action: manipulation;
       outline-offset: 10px;
       filter: drop-shadow(0 30px 36px var(--shadow));
     }
@@ -343,11 +350,31 @@
 
     @media (max-width: 560px) {
       .scene {
-        height: min(94vh, 760px);
+        width: min(96vw, 680px);
+        height: min(96dvh, 720px);
+        gap: 0.42rem;
+      }
+
+      .title {
+        font-size: clamp(1.08rem, 4.4vw, 1.36rem);
+      }
+
+      .title span {
+        font-size: clamp(2.15rem, 11vw, 3.15rem);
       }
 
       .envelope-btn {
-        width: min(94vw, 500px);
+        width: min(96vw, 500px);
+      }
+
+      .letter {
+        width: 86%;
+        height: 82%;
+        bottom: 9%;
+      }
+
+      .hint {
+        padding: 0.34rem 0.76rem;
       }
     }
 
@@ -396,7 +423,7 @@
     const floatHearts = document.getElementById("floatHearts");
 
     function spawnRainHearts() {
-      const count = 34;
+      const count = window.matchMedia("(max-width: 560px)").matches ? 22 : 34;
       for (let i = 0; i < count; i += 1) {
         const heart = document.createElement("span");
         heart.textContent = "♥";
