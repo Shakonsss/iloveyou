@@ -1,16 +1,25 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
-  <meta name="referrer" content="no-referrer" />
-  <title>Page unavailable</title>
+  <title>Pentru tine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: light;
+      --bg-top: #ffeef7;
+      --bg-mid: #ffd7e8;
+      --bg-bot: #ffc7dd;
+      --envelope-back: #f8a6c5;
+      --envelope-front: #f591b8;
+      --envelope-flap: #ffbad4;
+      --paper: #fffafc;
+      --ink: #9f2f63;
+      --ink-soft: #be4e83;
+      --heart: #ff3f7f;
+      --shadow: rgba(116, 31, 73, 0.26);
     }
 
     * {
@@ -20,21 +29,323 @@
     body {
       margin: 0;
       min-height: 100vh;
+      overflow: hidden;
+      font-family: "Nunito", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.72), transparent 35%),
+        radial-gradient(circle at 80% 8%, rgba(255, 255, 255, 0.6), transparent 32%),
+        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 48%, var(--bg-bot) 100%);
       display: grid;
       place-items: center;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      background: #fafafa;
-      color: #666;
     }
 
-    p {
+    .heart-rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-rain span {
+      position: absolute;
+      top: -12vh;
+      left: 0;
+      color: var(--heart);
+      opacity: 0.45;
+      font-size: calc(12px + var(--size));
+      animation: fall var(--dur) linear infinite;
+      animation-delay: var(--delay);
+      text-shadow: 0 8px 16px rgba(255, 63, 127, 0.25);
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translate3d(var(--x), -12vh, 0) rotate(0deg);
+      }
+
+      100% {
+        transform: translate3d(calc(var(--x) + var(--drift)), 114vh, 0) rotate(320deg);
+      }
+    }
+
+    .scene {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 520px);
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 30px 38px var(--shadow));
+    }
+
+    .title {
+      position: absolute;
+      top: 7%;
+      left: 50%;
+      transform: translateX(-50%);
       margin: 0;
-      font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+      color: var(--ink);
+      font-size: clamp(1.2rem, 3.8vw, 1.9rem);
       letter-spacing: 0.01em;
+      text-align: center;
+    }
+
+    .title span {
+      display: block;
+      font-family: "Great Vibes", "Times New Roman", serif;
+      font-size: clamp(2.1rem, 7.5vw, 3.5rem);
+      line-height: 1;
+      margin-top: 0.1rem;
+      color: #d6377c;
+    }
+
+    .envelope-wrap {
+      position: relative;
+      width: min(80vw, 360px);
+      aspect-ratio: 5 / 3.6;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      outline-offset: 12px;
+    }
+
+    .envelope-wrap:focus-visible {
+      outline: 3px solid rgba(255, 255, 255, 0.95);
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 0;
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: var(--envelope-back);
+      border-radius: 0.9rem;
+    }
+
+    .envelope-front {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 38%, 50% 78%, 100% 38%, 100% 100%, 0 100%);
+      background: var(--envelope-front);
+      border-radius: 0.9rem;
+      z-index: 5;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 0, 100% 0, 50% 58%);
+      background: var(--envelope-flap);
+      border-radius: 0.9rem;
+      transform-origin: top;
+      transition: transform 0.9s cubic-bezier(.2, .85, .2, 1);
+      z-index: 8;
+      backface-visibility: hidden;
+    }
+
+    .seal {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      z-index: 9;
+      transition: transform 0.8s ease, opacity 0.55s ease;
+      filter: drop-shadow(0 6px 12px rgba(160, 28, 90, 0.28));
+    }
+
+    .seal::before,
+    .seal::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--heart);
+      border-radius: 50%;
+    }
+
+    .seal::before {
+      transform: translateX(-26%) scale(0.82);
+    }
+
+    .seal::after {
+      transform: translateX(26%) scale(0.82);
+    }
+
+    .seal span {
+      position: absolute;
+      inset: 0;
+      background: var(--heart);
+      transform: rotate(45deg) scale(0.86);
+      border-radius: 14px;
+    }
+
+    .letter {
+      position: absolute;
+      left: 50%;
+      bottom: 6%;
+      width: 87%;
+      height: 84%;
+      transform: translate(-50%, 34%);
+      background: var(--paper);
+      border-radius: 0.72rem;
+      z-index: 4;
+      border: 1px solid rgba(244, 156, 194, 0.65);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.86),
+        0 16px 30px rgba(175, 48, 103, 0.14);
+      padding: clamp(0.9rem, 3vw, 1.3rem);
+      display: grid;
+      place-content: center;
+      gap: 0.6rem;
+      text-align: center;
+      transition: transform 0.95s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .letter h2 {
+      margin: 0;
+      font-family: "Great Vibes", "Times New Roman", serif;
+      font-size: clamp(2.2rem, 9vw, 3.35rem);
+      color: var(--ink);
+      font-weight: 400;
+      line-height: 0.95;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease 0.26s, transform 0.55s ease 0.26s;
+    }
+
+    .letter p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: clamp(0.92rem, 2.4vw, 1.04rem);
+      letter-spacing: 0.01em;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.55s ease 0.35s, transform 0.55s ease 0.35s;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 7%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      color: #a43e73;
+      font-size: clamp(0.84rem, 2.2vw, 0.97rem);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      padding: 0.36rem 0.82rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      animation: pulse 1.8s ease-in-out infinite;
+      transition: opacity 0.4s ease;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+      }
+
+      50% {
+        transform: translateX(-50%) scale(1.04);
+      }
+    }
+
+    .envelope-wrap.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-wrap.open .seal {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+    }
+
+    .envelope-wrap.open .letter {
+      transform: translate(-50%, -48%);
+    }
+
+    .envelope-wrap.open .letter h2,
+    .envelope-wrap.open .letter p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .envelope-wrap.open ~ .hint {
+      opacity: 0;
+    }
+
+    @media (max-width: 520px) {
+      .scene {
+        width: 96vw;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .heart-rain span,
+      .envelope-flap,
+      .letter,
+      .seal,
+      .letter h2,
+      .letter p,
+      .hint {
+        animation: none;
+        transition: none;
+      }
     }
   </style>
 </head>
 <body>
-  <p>Page unavailable.</p>
+  <div class="heart-rain" id="heartRain" aria-hidden="true"></div>
+
+  <main class="scene" aria-label="Mesaj de dragoste">
+    <h1 class="title">Pentru iubita mea<span>cu toata inima</span></h1>
+
+    <button class="envelope-wrap" id="envelopeButton" aria-expanded="false" aria-label="Deschide plicul">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter">
+          <h2>Te iubesc!</h2>
+          <p>Tu imi faci zilele mai frumoase, in fiecare clipa.</p>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+        <div class="seal" aria-hidden="true"><span></span></div>
+      </div>
+    </button>
+
+    <p class="hint">Apasa pe plic</p>
+  </main>
+
+  <script>
+    const envelopeButton = document.getElementById("envelopeButton");
+    const heartRain = document.getElementById("heartRain");
+
+    envelopeButton.addEventListener("click", () => {
+      envelopeButton.classList.toggle("open");
+      envelopeButton.setAttribute(
+        "aria-expanded",
+        envelopeButton.classList.contains("open") ? "true" : "false"
+      );
+    });
+
+    const heartsCount = 34;
+
+    for (let i = 0; i < heartsCount; i += 1) {
+      const heart = document.createElement("span");
+      heart.textContent = "♥";
+      heart.style.setProperty("--x", `${Math.random() * 100}vw`);
+      heart.style.setProperty("--drift", `${(Math.random() * 16 - 8).toFixed(2)}vw`);
+      heart.style.setProperty("--dur", `${7 + Math.random() * 8}s`);
+      heart.style.setProperty("--delay", `${-Math.random() * 12}s`);
+      heart.style.setProperty("--size", `${Math.floor(Math.random() * 18) + 4}px`);
+      heartRain.appendChild(heart);
+    }
+  </script>
 </body>
 </html>

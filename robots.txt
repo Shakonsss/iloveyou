@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-# Keep crawling allowed so search bots can read the noindex meta tags in index.html.
