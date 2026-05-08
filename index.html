@@ -262,7 +262,9 @@
       width: auto;
       height: auto;
       font-size: var(--w);
-      line-height: 1;
+      line-height: 0.84;
+      font-family: "Arial Black", "Segoe UI Symbol", "Segoe UI Emoji", sans-serif;
+      font-weight: 900;
       color: #ff4f90;
       text-shadow: 0 8px 16px rgba(255, 79, 144, 0.26);
       opacity: 0;
@@ -270,6 +272,16 @@
       animation: floatUp var(--t) ease-in forwards;
       animation-delay: var(--d);
       user-select: none;
+    }
+
+    .float-heart::after {
+      content: "❤";
+      position: absolute;
+      inset: 0;
+      color: inherit;
+      opacity: 0.45;
+      transform: translate(1px, -1px) scale(1.08);
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -431,7 +443,7 @@
       for (let i = 0; i < 9; i += 1) {
         const h = document.createElement("div");
         h.className = "float-heart";
-        h.textContent = "♥";
+        h.textContent = "❤";
         h.style.setProperty("--left", `${10 + Math.random() * 80}%`);
         h.style.setProperty("--w", `${48 + Math.random() * 34}px`);
         h.style.setProperty("--t", `${2.6 + Math.random() * 1.8}s`);
