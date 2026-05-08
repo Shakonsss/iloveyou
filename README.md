@@ -35,3 +35,9 @@ git push -u origin main
 - Deschide linkul public.
 - Scanează QR-ul cu telefonul.
 - Apasă pe plic: se deschide și apare mesajul `Te iubesc!`.
+
+## 4) Mod discret (recomandat)
+
+- Pagina include deja tag-uri `noindex` ca să nu apară în rezultate de căutare.
+- După ce oferi cadoul, intră în `Settings` -> `Pages` -> `Unpublish site`.
+- După unpublish, poți seta repo-ul înapoi pe `Private`.
