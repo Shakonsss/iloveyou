@@ -259,37 +259,17 @@
       position: absolute;
       left: var(--left);
       bottom: 0;
-      width: var(--w);
-      height: var(--w);
+      width: auto;
+      height: auto;
+      font-size: var(--w);
+      line-height: 1;
+      color: #ff4f90;
+      text-shadow: 0 8px 16px rgba(255, 79, 144, 0.26);
       opacity: 0;
       transform: translateY(0) scale(0.7);
       animation: floatUp var(--t) ease-in forwards;
       animation-delay: var(--d);
-    }
-
-    .float-heart::before,
-    .float-heart::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: #ff4f90;
-      border-radius: 50%;
-    }
-
-    .float-heart::before {
-      transform: translateX(-25%) scale(0.8);
-    }
-
-    .float-heart::after {
-      transform: translateX(25%) scale(0.8);
-    }
-
-    .float-heart span {
-      position: absolute;
-      inset: 0;
-      background: #ff4f90;
-      border-radius: 10px;
-      transform: rotate(45deg) scale(0.86);
+      user-select: none;
     }
 
     @keyframes floatUp {
@@ -451,12 +431,12 @@
       for (let i = 0; i < 9; i += 1) {
         const h = document.createElement("div");
         h.className = "float-heart";
+        h.textContent = "♥";
         h.style.setProperty("--left", `${10 + Math.random() * 80}%`);
         h.style.setProperty("--w", `${22 + Math.random() * 20}px`);
         h.style.setProperty("--t", `${2.6 + Math.random() * 1.8}s`);
         h.style.setProperty("--d", `${Math.random() * 0.35}s`);
         h.style.setProperty("--sway", `${(Math.random() * 80 - 40).toFixed(1)}px`);
-        h.innerHTML = "<span></span>";
         floatHearts.appendChild(h);
       }
     }
